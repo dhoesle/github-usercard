@@ -1,8 +1,23 @@
 /*
   STEP 1: using axios, send a GET request to the following URL
     (replacing the placeholder with your Github name):
-    https://api.github.com/users/<your name>
+    https://api.github.com/users/<dhoesle>
 */
+// console.log(axios)
+// const axios = require('axios').default;
+
+axios.get('https://api.github.com/users/dhoesle')
+  .then(function (response) {
+    // handle success
+    console.log(response);
+  })
+  .catch(function (error) {
+    // handle error
+    console.log(error);
+  })
+  .then(function () {
+    // always executed
+  });
 
 /*
   STEP 2: Inspect and study the data coming back, this is YOUR
