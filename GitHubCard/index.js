@@ -102,7 +102,6 @@ function userCardMaker(user){
 
 
   
-  // console.log("userCardMaker -> cards", cards)
   return card
   
 
@@ -128,9 +127,16 @@ function userCardMaker(user){
 */
 
 const followersArray = [];
+followersArray.push('tetondan')
+followersArray.push('dustinmyers')
+followersArray.push('justsml')
+followersArray.push('luishrd')
+followersArray.push('bigknell')
+console.log("followersArray", followersArray)
 
-
-
+for (i = 0; i < followersArray.length; i++) {
+  getUser(followersArray[i])
+}
 
 
 
