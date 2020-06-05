@@ -6,18 +6,29 @@
 // console.log(axios)
 // const axios = require('axios').default;
 
-axios.get('https://api.github.com/users/dhoesle')
-  .then(function (response) {
-    // handle success
-    console.log(response);
+function getUser(name){
+  let thePromise = axios.get(`https://api.github.com/users/${name}`)
+  
+  thePromise.then(response => {
+    const userData = response.data
+    console.log('the response from the API, organized for us by axios',userData)
+    const userCard = userCardMaker(userData)
+    cards.appendChild(userCard)
   })
-  .catch(function (error) {
-    // handle error
-    console.log(error);
+
+  .catch(error => {
+    debugger
+    console.log('something went wrong, hopefully the error tells us what', error);
   })
-  .then(function () {
-    // always executed
-  });
+
+  .then(() => {
+    console.log('done')
+  })
+}
+
+getUser('dhoesle')
+// console.log(userData)
+
 
 /*
   STEP 2: Inspect and study the data coming back, this is YOUR
@@ -45,11 +56,11 @@ axios.get('https://api.github.com/users/dhoesle')
       </div>
     </div>
 */
-let cards = document.querySelector('.cards')
+  let cards = document.querySelector('.cards')
 
-function userCardMaker(attributes){
+function userCardMaker(user){
 
-  // let {avatar_url, name, login, location, html_url, followers, following, bio } = attributes
+  // const {avatar_url, name, login, location, html_url, followers, following, bio } = user
 
   let card = document.createElement('div')
   let img = document.createElement('img')
@@ -68,7 +79,6 @@ function userCardMaker(attributes){
   userName.classList.add('name')
   usersUserName.classList.add('username')
 
-  cards.appendChild(card)
   card.appendChild(img)
   card.appendChild(cardInfo)
   cardInfo.appendChild(userName)
@@ -80,32 +90,28 @@ function userCardMaker(attributes){
   cardInfo.appendChild(userFollowing)
   cardInfo.appendChild(userBio)
 
-  // img.src = avatar_url
-  userName.innerHTML = '{name}'
-  usersUserName.innerHTML = '{users name}'
-  userLocation.innerHTML = 'Location: {users location}'
+  img.src = user.avatar_url
+  userName.innerHTML = `${user.name}`
+  usersUserName.innerHTML = `${user.login}`
+  userLocation.innerHTML = `${user.location}`
   profile.innerHTML = 'Profile:'
-  userAddress.innerHTML = '{address to users github page}'
-  userFollowers.innerHTML = 'Followers: {users followers count)'
-  userFollowing.innerHTML = 'Following: {users following count}'
-  userBio.innerHTML = 'Bio: {users bio}'
+  userAddress.innerHTML = `${user.html_url}`
+  userFollowers.innerHTML = `Followers: ${user.followers}`
+  userFollowing.innerHTML = `Following: ${user.following}`
+  userBio.innerHTML = `Bio: ${user.bio}`
 
 
-
-  console.log("userCardMaker -> cards", cards)
-  return cards
+  
+  // console.log("userCardMaker -> cards", cards)
+  return card
   
 
 }
-userCardMaker()
 
 /*
   STEP 4: Pass the data received from Github into your function,
     and append the returned markup to the DOM as a child of .cards
 */
-
-
-
 
 
 
