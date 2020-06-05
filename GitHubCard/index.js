@@ -79,6 +79,19 @@ function userCardMaker(user){
   userName.classList.add('name')
   usersUserName.classList.add('username')
 
+  
+
+  img.src = user.avatar_url
+  userName.innerHTML = `${user.name}`
+  usersUserName.innerHTML = `${user.login}`
+  userLocation.innerHTML = `Location: ${user.location}`
+  profile.innerHTML = 'Profile: ', userAddress 
+  userAddress.innerHTML = `${user.html_url}`
+  userAddress.href = user.html_url
+  userFollowers.innerHTML = `Followers: ${user.followers}`
+  userFollowing.innerHTML = `Following: ${user.following}`
+  userBio.innerHTML = `Bio: ${user.bio}`
+
   card.appendChild(img)
   card.appendChild(cardInfo)
   cardInfo.appendChild(userName)
@@ -86,22 +99,12 @@ function userCardMaker(user){
   cardInfo.appendChild(userLocation)
   cardInfo.appendChild(profile)
   profile.appendChild(userAddress)
+  console.log("userCardMaker -> userAddress", userAddress)
   cardInfo.appendChild(userFollowers)
   cardInfo.appendChild(userFollowing)
   cardInfo.appendChild(userBio)
-
-  img.src = user.avatar_url
-  userName.innerHTML = `${user.name}`
-  usersUserName.innerHTML = `${user.login}`
-  userLocation.innerHTML = `${user.location}`
-  profile.innerHTML = 'Profile:'
-  userAddress.innerHTML = `${user.html_url}`
-  userFollowers.innerHTML = `Followers: ${user.followers}`
-  userFollowing.innerHTML = `Following: ${user.following}`
-  userBio.innerHTML = `Bio: ${user.bio}`
-
-
   
+  console.log("userCardMaker -> card", card)
   return card
   
 
